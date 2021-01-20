@@ -32,7 +32,7 @@ namespace Services {
                 });
             //  Get only the first 10 elements sorted by house number
             List<KeyValuePair<int, RealEstate>> realEstatesList = realEstates.ToList();
-            List<KeyValuePair<int, RealEstate>> topTenRealEstates = realEstatesList.OrderBy(i => i.Value.houses).Take(10).ToList<KeyValuePair<int, RealEstate>>();
+            List<KeyValuePair<int, RealEstate>> topTenRealEstates = realEstatesList.OrderByDescending(i => i.Value.houses).Take(10).ToList<KeyValuePair<int, RealEstate>>();
             return topTenRealEstates;
         }
 

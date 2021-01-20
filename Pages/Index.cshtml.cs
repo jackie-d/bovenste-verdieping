@@ -28,9 +28,6 @@ namespace BovensteVerdieping.Pages
         public async Task<JsonResult> OnGetGetTopRealEstates(string name)
         {
             var topTenRealEstate = await realEstateService.GetTopRealEstates();
-            foreach ( var realEstate in topTenRealEstate ) {
-                Console.WriteLine(realEstate.Value.name);
-            }
             return new JsonResult(topTenRealEstate);
         }
 

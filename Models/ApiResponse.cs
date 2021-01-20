@@ -16,9 +16,9 @@ namespace BovensteVerdieping {
             public string HuurprijsOpAanvraag { get; set; } 
             public object HuurprijsTot { get; set; } 
             public string KoopAbbreviation { get; set; } 
-            public int Koopprijs { get; set; } 
+            public int? Koopprijs { get; set; } 
             public string KoopprijsOpAanvraag { get; set; } 
-            public int KoopprijsTot { get; set; } 
+            public int? KoopprijsTot { get; set; } 
             public object OriginelePrijs { get; set; } 
             public string VeilingText { get; set; } 
         }
@@ -101,9 +101,9 @@ namespace BovensteVerdieping {
             public bool IsVerhuurd { get; set; } 
             public bool IsVerkocht { get; set; } 
             public bool IsVerkochtOfVerhuurd { get; set; } 
-            public int Koopprijs { get; set; } 
+            public int? Koopprijs { get; set; } 
             public string KoopprijsFormaat { get; set; } 
-            public int KoopprijsTot { get; set; } 
+            public int? KoopprijsTot { get; set; } 
             public string Land { get; set; } 
             public int MakelaarId { get; set; } 
             public string MakelaarNaam { get; set; } 
@@ -111,7 +111,7 @@ namespace BovensteVerdieping {
             public object Note { get; set; } 
             public List<object> OpenHuis { get; set; } 
             public int Oppervlakte { get; set; } 
-            public int Perceeloppervlakte { get; set; } 
+            public int? Perceeloppervlakte { get; set; } 
             public string Postcode { get; set; } 
             public Prijs Prijs { get; set; } 
             public string PrijsGeformatteerdHtml { get; set; } 
