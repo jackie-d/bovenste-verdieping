@@ -12,10 +12,10 @@ namespace Services {
 
     public class ApiService {
 
-        private readonly string EndpointUrl = "http://partnerapi.funda.nl/feeds/Aanbod.svc/json/%%APIKEY%%/";
+        private readonly string ENPOINT_URL = "http://partnerapi.funda.nl/feeds/Aanbod.svc/json/%%APIKEY%%/";
         
-        private readonly string SearchValueWithoutGarden = "/amsterdam/tuin/";
-        private readonly string SearchValueWithGarden = "/amsterdam/";
+        private readonly string SEARCH_VALUE_WITHOUT_GARDEN = "/amsterdam/tuin/";
+        private readonly string SEARCH_VALUE_WITH_GARDEN = "/amsterdam/";
         
         private AppConfiguration appConfiguration;
         private HttpClient httpClient;
@@ -27,45 +27,47 @@ namespace Services {
 
         // public accessible methods to retrieve API data
 
-        public async Task<string> GetHouses(bool withGarden = false)
+        public async Task<List<BovensteVerdieping.Object>> GetHouses(bool withGarden = false)
         {
-           string enpointUrl = GetEndpointUrl();
-           var parameters = new Dictionary<string, string>()
+            // Obtain endpoint URL with API KEY
+            string enpointUrl = GetEndpointUrl();
+            // Create the complete URL with parameters
+            var parameters = new Dictionary<string, string>()
                 {
                     { "type", "koop" },
-                    { "zo", SearchValueWithoutGarden },
+                    { "zo", SEARCH_VALUE_WITHOUT_GARDEN },
                     { "page", null },
-                    { "p", "" },
+                    { "pagesize", null },
                 };
+            // 
             if ( withGarden ) {
-                parameters["zo"] = SearchValueWithGarden;
+                parameters["zo"] = SEARCH_VALUE_WITH_GARDEN;
             }
+            //  for this demo set an hard limit of 1000 listings on 1 page
             parameters["page"] = "1";
+            // parameters["pagesize"] = "1000"; <-- API DONT WORK WITH PAGINATION GREATER THAN 25
+            parameters["pagesize"] = "25";
+            // create the definitive URL
             var url = $"{enpointUrl}?{string.Join("&", parameters.Select(param => $"{param.Key}={param.Value}"))}";
             
-            Console.WriteLine("url " + url);
-
+            // Do the call and obtain the response and marshall the JSON object to a concrete model
             var apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
 
-            foreach(PropertyDescriptor descriptor in TypeDescriptor.GetProperties(apiReponse))
-            {
-                string name=descriptor.Name;
-                object value=descriptor.GetValue(apiReponse);
-                Console.WriteLine("{0}={1}",name,value);
-            }
+            Console.WriteLine("url " + url);
+            Console.WriteLine(apiReponse.TotaalAantalObjecten);
+            Console.WriteLine(apiReponse.Objects.Count);
 
-            return null;
+            return apiReponse.Objects;
         }
 
-        public async Task<string> GetHousesWithGarden()
+        public async Task<List<BovensteVerdieping.Object>> GetHousesWithGarden()
         {   
-            await GetHouses(true);
-            return null;
+            return await GetHouses(true);
         }
 
         // get the endpoint URL
         private string GetEndpointUrl() {
-            string endpointUrl = EndpointUrl;
+            string endpointUrl = ENPOINT_URL;
             string apiKey = appConfiguration.FundaApiKey;
             return endpointUrl.Replace("%%APIKEY%%",apiKey);
         }

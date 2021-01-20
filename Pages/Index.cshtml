@@ -5,6 +5,13 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bovenste Verdieping</h1>
+    <p>De beste makelaars voor uw huis</p>
 </div>
+
+@if( Model.topTenRealEstate != null ){
+@foreach( KeyValuePair<int, Services.RealEstate> entry in Model.topTenRealEstate)
+{
+    <p>@entry.Value.name</p>
+}
+}
