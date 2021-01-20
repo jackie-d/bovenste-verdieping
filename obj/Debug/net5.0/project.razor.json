@@ -15633,8 +15633,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/jackie/Documents/dotnet/BovensteVerdieping/Pages/Privacy.cshtml",
-      "TargetPath": "Pages\\Privacy.cshtml",
+      "FilePath": "/Users/jackie/Documents/dotnet/BovensteVerdieping/Pages/Tuin.cshtml",
+      "TargetPath": "Pages\\Tuin.cshtml",
       "FileKind": "mvc"
     }
   ],
