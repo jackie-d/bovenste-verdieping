@@ -15,7 +15,7 @@ namespace Services {
 
         public async Task<List<KeyValuePair<int, RealEstate>>> GetTopRealEstates(bool withGarden = false) {
             // Get all the houses from API
-            List<BovensteVerdieping.Object> houses = await apiService.GetHouses(withGarden);   
+            List<BovensteVerdieping.Object> houses = await apiService.GetHouses(withGarden);
             // Get the RealEstate (makelaar) informations and count the houses for each one
             Dictionary<int, RealEstate> realEstates = new Dictionary<int, RealEstate>();
             houses.ForEach(delegate(BovensteVerdieping.Object house)
@@ -34,6 +34,9 @@ namespace Services {
             List<KeyValuePair<int, RealEstate>> realEstatesList = realEstates.ToList();
             List<KeyValuePair<int, RealEstate>> topTenRealEstates = realEstatesList.OrderByDescending(i => i.Value.houses).Take(10).ToList<KeyValuePair<int, RealEstate>>();
             return topTenRealEstates;
+        }
+        public async Task<List<KeyValuePair<int, RealEstate>>> GetTopRealEstatesWithGarden() {
+            return await GetTopRealEstates(true);
         }
 
     }

@@ -14,8 +14,8 @@ namespace Services {
 
         private readonly string ENPOINT_URL = "http://partnerapi.funda.nl/feeds/Aanbod.svc/json/%%APIKEY%%/";
         
-        private readonly string SEARCH_VALUE_WITHOUT_GARDEN = "/amsterdam/tuin/";
-        private readonly string SEARCH_VALUE_WITH_GARDEN = "/amsterdam/";
+        private readonly string SEARCH_VALUE_WITHOUT_GARDEN = "/amsterdam/";
+        private readonly string SEARCH_VALUE_WITH_GARDEN = "/amsterdam/tuin/";
         
         private AppConfiguration appConfiguration;
         private HttpClient httpClient;
@@ -35,6 +35,8 @@ namespace Services {
             // Do the call and obtain the response and marshall the JSON object to a concrete model (for the first page)
             var apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
 
+            Console.WriteLine(" --- " + url);
+
             // Collect the house listings of the first page in a collection
             List<BovensteVerdieping.Object> houseListings = apiReponse.Objects;
 
@@ -44,17 +46,13 @@ namespace Services {
                 // if there are, get all the pages and add the house listings to the main collection
                 for ( int i = 2; i <= totalPages; i++ ) {
                     url = getApiUrlWithParameters(withGarden, i);
+                    Console.WriteLine(" --- " + url);
                     apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
                     houseListings.AddRange(apiReponse.Objects);
                 }
             }
 
             return houseListings;
-        }
-
-        public async Task<List<BovensteVerdieping.Object>> GetHousesWithGarden()
-        {   
-            return await GetHouses(true);
         }
 
         // get the endpoint URL
@@ -80,9 +78,11 @@ namespace Services {
             if ( withGarden ) {
                 parameters["zo"] = SEARCH_VALUE_WITH_GARDEN;
             }
-            //  for this demo set an hard limit of 1000 listings on 1 page
+            // Set the page of the house listing to be requested to the API server
             parameters["page"] = page+"";
+            // DEPRECATED // For this demo set an hard limit of 1000 listings on 1 page
             // parameters["pagesize"] = "1000"; <-- API DONT WORK WITH PAGINATION GREATER THAN 25
+            // Set pagination to 25
             parameters["pagesize"] = "25";
             // create the definitive URL
             var url = $"{enpointUrl}?{string.Join("&", parameters.Select(param => $"{param.Key}={param.Value}"))}";

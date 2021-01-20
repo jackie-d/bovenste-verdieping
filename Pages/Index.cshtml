@@ -33,12 +33,15 @@
     <p class="text-muted"><small><em>Bezig met laden...</em></small></p>
 </div>
 
+<div class="text-center" id="error" style="display: none">
+    <p class="text-muted"><small><em>Fout. Probeer het later opnieuw. Dank je.</em></small></p>
+</div>
+
 <script type="text/javascript">
     var url = '/Index?handler=GetTopRealEstates';
 
     $(document).ready(() => {
         $.get(url, {}, (rentalEstates) => {
-            console.log(rentalEstates);
             if (rentalEstates && rentalEstates.length > 0) {
                 for( let rentalEstate of rentalEstates ) {
                     var $row = $('#table-row').clone();
@@ -50,6 +53,10 @@
                     $('#loader').hide();
                 }
             }
+        }).fail(function() {
+            alert( "Er is een fout opgetreden bij het contacteren van de API-server. Probeer het later opnieuw. Dank je." );
+            $('#loader').hide();
+            $('#error').show();
         });
     });
 </script>

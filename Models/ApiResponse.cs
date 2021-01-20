@@ -47,7 +47,7 @@ namespace BovensteVerdieping {
             public object Prijs { get; set; } 
             public object PrijsGeformatteerd { get; set; } 
             public object PublicatieDatum { get; set; } 
-            public int Type { get; set; } 
+            public int? Type { get; set; } 
             public object Woningtypen { get; set; } 
         }
 
@@ -55,8 +55,8 @@ namespace BovensteVerdieping {
             public bool HasPromotionLabel { get; set; } 
             public List<string> PromotionPhotos { get; set; } 
             public List<string> PromotionPhotosSecure { get; set; } 
-            public int PromotionType { get; set; } 
-            public int RibbonColor { get; set; } 
+            public int? PromotionType { get; set; } 
+            public int? RibbonColor { get; set; } 
             public object RibbonText { get; set; } 
             public string Tagline { get; set; } 
         }
@@ -65,11 +65,11 @@ namespace BovensteVerdieping {
             public string AangebodenSindsTekst { get; set; } 
             public string AanmeldDatum { get; set; } 
             public object AantalBeschikbaar { get; set; } 
-            public int AantalKamers { get; set; } 
+            public int? AantalKamers { get; set; } 
             public object AantalKavels { get; set; } 
             public string Aanvaarding { get; set; } 
             public string Adres { get; set; } 
-            public int Afstand { get; set; } 
+            public int? Afstand { get; set; } 
             public string BronCode { get; set; } 
             public List<object> ChildrenObjects { get; set; } 
             public object DatumAanvaarding { get; set; } 
@@ -80,7 +80,7 @@ namespace BovensteVerdieping {
             public string FotoMedium { get; set; } 
             public string FotoSecure { get; set; } 
             public object GewijzigdDatum { get; set; } 
-            public int GlobalId { get; set; } 
+            public int? GlobalId { get; set; } 
             public string GroupByObjectType { get; set; } 
             public bool Heeft360GradenFoto { get; set; } 
             public bool HeeftBrochure { get; set; } 
@@ -110,7 +110,7 @@ namespace BovensteVerdieping {
             public string MobileURL { get; set; } 
             public object Note { get; set; } 
             public List<object> OpenHuis { get; set; } 
-            public int Oppervlakte { get; set; } 
+            public int? Oppervlakte { get; set; } 
             public int? Perceeloppervlakte { get; set; } 
             public string Postcode { get; set; } 
             public Prijs Prijs { get; set; } 
@@ -122,23 +122,23 @@ namespace BovensteVerdieping {
             public object ProjectNaam { get; set; } 
             public PromoLabel PromoLabel { get; set; } 
             public string PublicatieDatum { get; set; } 
-            public int PublicatieStatus { get; set; } 
+            public int? PublicatieStatus { get; set; } 
             public object SavedDate { get; set; } 
             //[JsonProperty("Soort-aanbod")]
             //public string SoortAanbodName { get; set; } 
-            public int SoortAanbod { get; set; } 
+            public int? SoortAanbod { get; set; } 
             public object StartOplevering { get; set; } 
             public object TimeAgoText { get; set; } 
             public object TransactieAfmeldDatum { get; set; } 
             public object TransactieMakelaarId { get; set; } 
             public object TransactieMakelaarNaam { get; set; } 
-            public int TypeProject { get; set; } 
+            public int? TypeProject { get; set; } 
             public string URL { get; set; } 
             public string VerkoopStatus { get; set; } 
             public double WGS84_X { get; set; } 
             public double WGS84_Y { get; set; } 
-            public int WoonOppervlakteTot { get; set; } 
-            public int Woonoppervlakte { get; set; } 
+            public int? WoonOppervlakteTot { get; set; } 
+            public int? Woonoppervlakte { get; set; } 
             public string Woonplaats { get; set; } 
             public List<int> ZoekType { get; set; } 
         }
@@ -151,15 +151,15 @@ namespace BovensteVerdieping {
         }
 
         public class ApiResponse  {
-            public int AccountStatus { get; set; } 
+            public int? AccountStatus { get; set; } 
             public bool EmailNotConfirmed { get; set; } 
             public bool ValidationFailed { get; set; } 
             public object ValidationReport { get; set; } 
-            public int Website { get; set; } 
+            public int? Website { get; set; } 
             public Metadata Metadata { get; set; } 
             public List<Object> Objects { get; set; } 
             public Paging Paging { get; set; } 
-            public int TotaalAantalObjecten { get; set; } 
+            public int? TotaalAantalObjecten { get; set; } 
         }
 
 }
