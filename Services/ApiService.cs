@@ -35,18 +35,19 @@ namespace Services {
             // Do the call and obtain the response and marshall the JSON object to a concrete model (for the first page)
             var apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
 
-            Console.WriteLine(" --- " + url);
-
             // Collect the house listings of the first page in a collection
             List<BovensteVerdieping.Object> houseListings = apiReponse.Objects;
 
             //Check if there are other house listings pages to be collected
             int totalPages = apiReponse.Paging.AantalPaginas;
             if ( totalPages > 1 ) {
+                // Set here a max limit of 30 pages API fetching request as the API as 100 reqs./day limit and pagination works only up to 25 elements/page 
+                if ( totalPages > 30 ) {
+                    totalPages = 30;
+                }
                 // if there are, get all the pages and add the house listings to the main collection
                 for ( int i = 2; i <= totalPages; i++ ) {
                     url = getApiUrlWithParameters(withGarden, i);
-                    Console.WriteLine(" --- " + url);
                     apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
                     houseListings.AddRange(apiReponse.Objects);
                 }
