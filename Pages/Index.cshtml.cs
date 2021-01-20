@@ -13,7 +13,6 @@ namespace BovensteVerdieping.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly RealEstateService realEstateService;
-        public List<KeyValuePair<int, Services.RealEstate>> topTenRealEstate;
 
         public IndexModel(ILogger<IndexModel> logger, RealEstateService realEstateService)
         {
@@ -21,12 +20,19 @@ namespace BovensteVerdieping.Pages
             this.realEstateService = realEstateService;  
         }
 
-        public async void OnGet()
+        public void OnGet()
         {
-            this.topTenRealEstate = await realEstateService.GetTopRealEstates();
+            //
+        }
+
+        public async Task<JsonResult> OnGetGetTopRealEstates(string name)
+        {
+            var topTenRealEstate = await realEstateService.GetTopRealEstates();
             foreach ( var realEstate in topTenRealEstate ) {
                 Console.WriteLine(realEstate.Value.name);
             }
+            return new JsonResult(topTenRealEstate);
         }
+
     }
 }
