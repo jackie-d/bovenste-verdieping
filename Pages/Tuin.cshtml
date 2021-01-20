@@ -10,20 +10,23 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Naam</th>
+      <th scope="col">Pos.</th>
+      <th scope="col">Ref.</th>
+      <th scope="col">Naam Makelaar</th>
       <th scope="col">Huizen te koop</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody id="table-rows">
     <tr id="table-row" style="display: none;">
-      <td scope="row" class="id"></td>
+      <td scope="row" class="pos font-weight-bold"></td>
+      <td class="id"></td>
       <td class="name"></td>
       <td class="houses"></td>
+      <td class="button"><a class="btn btn-warning" target="_blank">Zie profiel</a></td>
     </tr>
   </tbody>
 </table>
-
 
 <div class="text-center" id="loader">
     <div id="loading" class="spinner-border text-warning" role="status">
@@ -42,11 +45,17 @@
     $(document).ready(() => {
         $.get(url, {}, (rentalEstates) => {
             if (rentalEstates && rentalEstates.length > 0) {
+                let i = 1;
                 for( let rentalEstate of rentalEstates ) {
                     var $row = $('#table-row').clone();
+                    if ( i == 1 ) {
+                        $row.addClass("table-warning");
+                    }
+                    $row.find('.pos').text(i++);
                     $row.find('.id').text(rentalEstate.value.id);
                     $row.find('.name').text(rentalEstate.value.name);
                     $row.find('.houses').text(rentalEstate.value.houses);
+                    $row.find('.button .btn').attr('href',`https://www.funda.nl/makelaars/kantoor/hazerswoude-dorp/${rentalEstate.value.id}/`);
                     $row.show();
                     $row.appendTo('#table-rows');
                     $('#loader').hide();
