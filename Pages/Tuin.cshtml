@@ -49,7 +49,7 @@
                 for( let rentalEstate of rentalEstates ) {
                     var $row = $('#table-row').clone();
                     if ( i == 1 ) {
-                        $row.addClass("table-warning");
+                        $row.addClass("table-info");
                     }
                     $row.find('.pos').text(i++);
                     $row.find('.id').text(rentalEstate.value.id);

@@ -21,7 +21,7 @@ namespace Services {
         private HttpClient httpClient;
 
         public ApiService(AppConfiguration appConfiguration) {
-            httpClient = new HttpClient();
+            this.httpClient = new HttpClient();
             this.appConfiguration = appConfiguration;
         }
 
@@ -41,15 +41,18 @@ namespace Services {
             //Check if there are other house listings pages to be collected
             int totalPages = apiReponse.Paging.AantalPaginas;
             if ( totalPages > 1 ) {
-                // Set here a max limit of 30 pages API fetching request as the API as 100 reqs./day limit and pagination works only up to 25 elements/page 
+                // Set here a max limit of 30 pages API fetching request as the API as 100 reqs./minute limit and pagination works only up to 25 elements/page 
                 if ( totalPages > 30 ) {
                     totalPages = 30;
                 }
                 // if there are, get all the pages and add the house listings to the main collection
                 for ( int i = 2; i <= totalPages; i++ ) {
                     url = getApiUrlWithParameters(withGarden, i);
-                    apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
-                    houseListings.AddRange(apiReponse.Objects);
+                    // if API network call response returns an error skip that call and write error to console (preserve partial functionality)
+                    try {
+                        apiReponse = await httpClient.GetFromJsonAsync<BovensteVerdieping.ApiResponse>(url);
+                        houseListings.AddRange(apiReponse.Objects);
+                    } catch(Exception e) { Console.WriteLine("Error on API network call: " + e.GetBaseException() ); }
                 }
             }
 

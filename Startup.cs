@@ -31,6 +31,9 @@ namespace BovensteVerdieping
             services.AddSingleton<Services.ApiService>();
             // Inject Real Estate Service
             services.AddSingleton<Services.RealEstateService>();
+            // Inject Cache Service
+            services.AddMemoryCache();
+            services.AddSingleton<Services.CacheService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

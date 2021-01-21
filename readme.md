@@ -1,10 +1,12 @@
 # Bovenste Verdieping
 
-Backend on ASP.NET
+Backend on .NET 5
 
 This demo contains a web-app with an architecture on separation of concerns and clean code.
 
 The connected data source is provided by a third part API service.
+
+*Access the oniline web-app: [https://bovenste-verdieping.azurewebsites.net/]()*
 
 ## Installation
 
