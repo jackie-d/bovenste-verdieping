@@ -8,13 +8,13 @@ The connected data source is provided by a third part API service.
 
 ## Access the online web-app
 
-Hosting: [https://bovenste-verdieping.azurewebsites.net/](https://bovenste-verdieping.azurewebsites.net/)
+See the online web-app: https://bovensteverdieping.azurewebsites.net/
 
 ## Installation
 
-- Download ASP.NET on your computer: [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)
+- Download .NET 5 SDK on your computer: https://dotnet.microsoft.com/en-us/download/dotnet/5.0
 
-- Get an API key or ask for one at: [https://www.funda.nl/voormakelaars/verdieping/trends/](https://www.funda.nl/voormakelaars/verdieping/trends/) 
+- Get an API key or ask for one at: [https://www.funda.nl/voormakelaars/verdieping/trends/](https://www.funda.nl/voormakelaars/verdieping/trends/) - **It's no more possible**
 
 - Clone the repo and move to it with your CLI
 
