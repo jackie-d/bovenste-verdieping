@@ -30,7 +30,7 @@ namespace BovensteVerdieping
             // Inject Api Service
             services.AddSingleton<Services.ApiService>();
             // Inject Real Estate Service
-            services.AddSingleton<Services.RealEstateService>();
+            services.AddSingleton<Services.IRealEstateService, Services.RealEstateService>();
             // Inject Cache Service
             services.AddMemoryCache();
             services.AddSingleton<Services.CacheService>();

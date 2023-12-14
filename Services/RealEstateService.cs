@@ -5,7 +5,7 @@ using System;
 
 namespace Services {
 
-    public class RealEstateService {
+    public class RealEstateService : IRealEstateService {
 
         private const string CACHE_KEY_TOP_TEN_REAL_ESTATE = "top_ten_real_estate_agents";
         private const string CACHE_KEY_TOP_TEN_REAL_ESTATE_WITH_GARDEN = "top_ten_real_estate_agents_with_garden";
@@ -70,6 +70,8 @@ namespace Services {
         public int id { get; set; }
         public string name { get; set; }
         public int houses { get; set; }
+
+        public RealEstate() {}
 
         public RealEstate(int id, string name, int houses) {
             this.id = id;

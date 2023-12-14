@@ -24,6 +24,10 @@ See the online web-app: https://bovensteverdieping.azurewebsites.net/
 
 - Open your browser on [http://localhost:5000/](http://localhost:5000/)
 
+## Test
+
+Run `dotnet test` to run tests
+
 ## Notes
 
 Due to API rate usage restriction the data consumption is moderately limited.
