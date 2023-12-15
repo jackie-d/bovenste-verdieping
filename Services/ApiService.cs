@@ -20,6 +20,8 @@ namespace BovensteVerdieping.Services {
         private AppConfiguration appConfiguration;
         private HttpClient httpClient;
 
+        public ApiService() {}
+
         public ApiService(AppConfiguration appConfiguration) {
             this.httpClient = new HttpClient();
             this.appConfiguration = appConfiguration;
@@ -27,7 +29,7 @@ namespace BovensteVerdieping.Services {
 
         // public accessible methods to retrieve API data
 
-        public async Task<List<BovensteVerdieping.Object>> GetHouses(bool withGarden = false)
+        public virtual async Task<List<BovensteVerdieping.Object>> GetHouses(bool withGarden = false)
         {
             // get the complete URL
             string url = getApiUrlWithParameters(withGarden);

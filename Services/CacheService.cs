@@ -7,11 +7,13 @@ namespace BovensteVerdieping.Services {
 
         private IMemoryCache cache;
 
+        public CacheService() {}
+
         public CacheService(IMemoryCache memoryCache) {
             this.cache = memoryCache;  
         }
 
-        public void set<T>(string key, T value, int? expirationInMinutes = null) {
+        public virtual void set<T>(string key, T value, int? expirationInMinutes = null) {
             // If an expiration of the cached value is requested, apply it while saving
             if ( expirationInMinutes != null ) {
                 //  Create the cache memory option object with the expiration parameter
@@ -25,7 +27,7 @@ namespace BovensteVerdieping.Services {
             }
         }
 
-        public T get<T>(string key) {
+        public virtual T get<T>(string key) {
             // Get the value from cache memory
             return this.cache.Get<T>(key);
         }

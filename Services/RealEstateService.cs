@@ -47,6 +47,7 @@ namespace BovensteVerdieping.Services {
             }
             return topTenRealEstates;
         }
+        
         public async Task<List<KeyValuePair<int, RealEstate>>> GetTopRealEstatesWithGarden() {
             return await GetTopRealEstates(true);
         }
