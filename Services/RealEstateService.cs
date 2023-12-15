@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using BovensteVerdieping.Models;
 
-namespace Services {
+namespace BovensteVerdieping.Services {
 
     public class RealEstateService : IRealEstateService {
 

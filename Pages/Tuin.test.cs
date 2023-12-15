@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using BovensteVerdieping;
-using Services;
+using BovensteVerdieping.Services;
 using BovensteVerdieping.Pages;
 using BovensteVerdieping.Models;
 

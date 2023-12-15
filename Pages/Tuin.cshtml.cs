@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using RealEstateService = Services.RealEstateService;
+using BovensteVerdieping.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Services;
 
 namespace BovensteVerdieping.Pages
 {

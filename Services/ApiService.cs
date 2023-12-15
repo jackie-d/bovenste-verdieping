@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Services {
+namespace BovensteVerdieping.Services {
 
     public class ApiService {
 
