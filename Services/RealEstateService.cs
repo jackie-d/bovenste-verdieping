@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using BovensteVerdieping.Models;
 
 namespace Services {
 
@@ -64,20 +65,6 @@ namespace Services {
             cacheService.set<List<KeyValuePair<int, RealEstate>>>(cacheKey, list, 5);
         }
 
-    }
-    
-    public class RealEstate {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int houses { get; set; }
-
-        public RealEstate() {}
-
-        public RealEstate(int id, string name, int houses) {
-            this.id = id;
-            this.name = name;
-            this.houses = houses;
-        }
     }
 
 }

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using BovensteVerdieping;
 using Services;
 using BovensteVerdieping.Pages;
+using BovensteVerdieping.Models;
+
 
 namespace BovensteVerdieping.Tests {
 
