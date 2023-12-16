@@ -42,10 +42,16 @@
 </div>
 
 <script type="text/javascript">
-    var url = '/Index?handler=GetTopRealEstates';
-
+    
     $(document).ready(() => {
-        $.get(url, {}, (rentalEstates) => {
+        loadRealEstate();
+    });
+
+    const url = '/Index?handler=GetTopRealEstates';
+        function loadRealEstate() {
+            const isSampleData = $('#sample-data-switch').is(":checked");
+            $('#table-row.enabled').remove();
+        $.get(url, { isSampleData }, (rentalEstates) => {
             if (rentalEstates && rentalEstates.length > 0) {
                 let i = 1;
                 for( let rentalEstate of rentalEstates ) {
@@ -59,7 +65,7 @@
                     $row.find('.houses').text(rentalEstate.value.houses);
                     $row.find('.button .btn').attr('href',`https://www.funda.nl/makelaars/kantoor/hazerswoude-dorp/${rentalEstate.value.id}/`);
                     $row.show();
-                    $row.appendTo('#table-rows');
+                    $row.addClass('enabled').appendTo('#table-rows');
                     $('#loader').hide();
                 }
             }
@@ -68,5 +74,5 @@
             $('#loader').hide();
             $('#error').show();
         });
-    });
+    }
 </script>

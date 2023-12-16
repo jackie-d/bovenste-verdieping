@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using BovensteVerdieping.Services;
+using BovensteVerdieping.Models;
 
 namespace BovensteVerdieping.Pages
 {
@@ -13,11 +14,13 @@ namespace BovensteVerdieping.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IRealEstateService realEstateService;
+        private readonly SampleDataService sampleDataService;
 
-        public IndexModel(ILogger<IndexModel> logger, IRealEstateService realEstateService)
+        public IndexModel(ILogger<IndexModel> logger, IRealEstateService realEstateService, SampleDataService sampleDataService)
         {
             _logger = logger;
             this.realEstateService = realEstateService;  
+            this.sampleDataService = sampleDataService;
         }
 
         public void OnGet()
@@ -25,9 +28,14 @@ namespace BovensteVerdieping.Pages
             //
         }
 
-        public async Task<JsonResult> OnGetGetTopRealEstates()
+        public async Task<JsonResult> OnGetGetTopRealEstates(bool isSampleData = false)
         {
-            var topTenRealEstate = await realEstateService.GetTopRealEstates();
+            List<KeyValuePair<int, RealEstate>> topTenRealEstate;
+            if ( !isSampleData ) {
+                topTenRealEstate = await realEstateService.GetTopRealEstates();   
+            } else {
+                topTenRealEstate = sampleDataService.GetRealEstates();
+            }
             return new JsonResult(topTenRealEstate);
         }
 

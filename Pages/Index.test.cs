@@ -29,7 +29,7 @@ namespace BovensteVerdieping.Tests {
             realEstateList.Add(new KeyValuePair<int, RealEstate>(0, new RealEstate(1, REAL_ESTATE_NAME, 1)));
             var taskResult = Task.FromResult(realEstateList);
             RealEstateServiceMock.Setup(s => s.GetTopRealEstates(false)).Returns(taskResult);
-            var indexModel = new IndexModel(null, RealEstateServiceMock.Object);
+            var indexModel = new IndexModel(null, RealEstateServiceMock.Object, null);
 
             var results = indexModel.OnGetGetTopRealEstates();
 

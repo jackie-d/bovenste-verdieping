@@ -32,7 +32,7 @@ namespace BovensteVerdieping.Tests {
             realEstateList.Add(new KeyValuePair<int, RealEstate>(2, new RealEstate(3, REAL_ESTATE_NAME[2], 3)));
             var taskResult = Task.FromResult(realEstateList);
             RealEstateServiceMock.Setup(s => s.GetTopRealEstatesWithGarden()).Returns(taskResult);
-            var tuinModel = new TuinModel(null, RealEstateServiceMock.Object);
+            var tuinModel = new TuinModel(null, RealEstateServiceMock.Object, null);
 
             var results = tuinModel.OnGetGetTopRealEstates();
 

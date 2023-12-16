@@ -4,7 +4,7 @@ __Backend on .NET 5__
 
 This demo contains a web-app with an architecture on separation of concerns and clean code.
 
-The connected data source is provided by a third part API service.
+The connected data source is provided by a third part API service and on sample data as fall-back.
 
 ## Access the online web-app
 
