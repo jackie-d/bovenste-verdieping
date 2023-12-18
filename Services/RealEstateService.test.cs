@@ -17,7 +17,7 @@ namespace BovensteVerdieping.Tests {
             private static List<string> REAL_ESTATE_NAME = new List<string> { "Name1","Name2" };
 
           [TestMethod]
-          public void When_CacheEmpy_GetTopRealEstate_Then_GivesSortedApiResults() {
+          public void With_CacheEmpy_When_GetTopRealEstate_Then_GivesSortedApiResults() {
             var CacheServiceMock = new Mock<CacheService>();
             CacheServiceMock
                 .Setup(s => s.get<List<KeyValuePair<int, RealEstate>>>(It.IsAny<string>()))
@@ -90,7 +90,7 @@ namespace BovensteVerdieping.Tests {
           }
 
           [TestMethod]
-          public void When_CacheHasHouses_GetTopRealEstate_Then_GivesCachedResults() {
+          public void With_CacheHasHouses_When_GetTopRealEstate_Then_GivesCachedResults() {
             var CacheServiceMock = new Mock<CacheService>();
             var realEstateList = new List<KeyValuePair<int, RealEstate>>();
             realEstateList.Add(new KeyValuePair<int, RealEstate>(0, new RealEstate(2, REAL_ESTATE_NAME[1], 2)));
